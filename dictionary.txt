@@ -20,3 +20,5 @@ with=з
 her=її
 said=сказав
 him=йому
+book=книга
+cup=чашка

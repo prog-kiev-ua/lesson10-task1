@@ -48,7 +48,7 @@ public class Dictionary {
                     if (fis.available() == 0 && word.length() != 0) {
                         String wordTr = translateWordEnToUa(word.toString());
                         // в случае с артиклем, перевод имеет пустую строку. В таком случае не отправляю в файл
-                        if(!wordTr.equals("")){
+                        if (!wordTr.equals("")) {
                             // отправляю в файл, предварительно делаю первую букву заглавную если такая была в английском варианте
                             fos.write(checkNeedToUpperCaseFirstLetter(word.toString(), wordTr).getBytes());
                         }
@@ -56,7 +56,7 @@ public class Dictionary {
                 } else {
                     if (word.length() != 0 && !word.equals("")) {
                         String wordTr = translateWordEnToUa(word.toString());
-                        if(!wordTr.equals("")){
+                        if (!wordTr.equals("")) {
                             fos.write(checkNeedToUpperCaseFirstLetter(word.toString(), wordTr).getBytes());
                         }
                         word.delete(0, word.length());
@@ -99,5 +99,13 @@ public class Dictionary {
             wordTr = new String(chars);
         }
         return wordTr;
+    }
+
+    public void addWord(String word, String wordTr) {
+        try (FileWriter fw = new FileWriter(file, true)) {
+            fw.write(System.lineSeparator() + word + "=" + wordTr);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
